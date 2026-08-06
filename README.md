@@ -22,6 +22,14 @@ A simple web application built using Flask that checks the strength of a passwor
 - CSS
 - JavaScript
 
+## Future Scope
+- AI-based password recommendations.
+- Password breach detection using public breach databases.
+- Password history and analytics.
+- Multi-language support.
+- User accounts and personalized security reports.
+- Integration with password managers.
+
 ## How to Run
 
 1. Install Flask:
