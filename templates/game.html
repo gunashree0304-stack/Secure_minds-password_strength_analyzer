@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Detective</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>🛡 SecureMind</h2>
+
+    <div class="nav-links">
+        <a href="/">Dashboard</a>
+        <a href="/game">Password Detective</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>🕵️ Password Detective Challenge</h1>
+
+    <div class="card">
+
+        <h3 id="level">Level 1</h3>
+
+        <p><strong>Strength:</strong> <span id="strength"></span></p>
+
+        <p><strong>Length:</strong> <span id="length"></span></p>
+
+        <p><strong>Starts With:</strong> <span id="start"></span></p>
+
+        <p><strong>Ends With:</strong> <span id="end"></span></p>
+
+        <p><strong>Contains:</strong> <span id="contains"></span></p>
+
+        <hr>
+
+        <h3>⏳ Time Remaining</h3>
+
+        <h2 id="timer">30</h2>
+
+        <hr>
+
+        <div id="options"></div>
+    </div>
+
+    <br>
+
+    <div class="card">
+
+        <h3>💡 Hint</h3>
+
+        <p id="hint">
+            Click Submit if you're unsure.
+        </p>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+        <h3>🏆 Score</h3>
+
+        <h1 id="score">0</h1>
+
+    </div>
+
+    <br>
+
+    <div class="card">
+
+        <h3>🎉 Result</h3>
+
+        <p id="result">
+            Solve the password using the clues above.
+        </p>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='game.js') }}"></script>
+
+</body>
+</html>

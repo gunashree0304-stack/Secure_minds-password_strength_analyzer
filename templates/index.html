@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureMind - Password Security Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>🛡 SecureMind</h2>
+
+    <div class="nav-links">
+        <a href="/">Dashboard</a>
+        <a href="/game">Password Detective</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>Password Security Dashboard</h1>
+
+    <form method="POST">
+
+        <div class="password-box">
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password..."
+                value="{{ password }}"
+                required>
+
+            <button
+                type="button"
+                id="togglePassword"
+                class="show-btn">
+                Show
+            </button>
+
+        </div>
+
+        <button type="submit" class="analyze-btn">
+            Analyze Password
+        </button>
+
+    </form>
+
+    {% if score is not none %}
+
+    <hr>
+
+    <div class="dashboard">
+
+        <!-- Score Card -->
+
+        <div class="card">
+
+            <h3>Overall Score</h3>
+
+            <h1>{{ score }}/5</h1>
+
+            <div class="progress">
+
+                {% if score==1 %}
+                <div class="progress-bar red" style="width:20%;"></div>
+
+                {% elif score==2 %}
+                <div class="progress-bar red" style="width:40%;"></div>
+
+                {% elif score==3 %}
+                <div class="progress-bar orange" style="width:60%;"></div>
+
+                {% elif score==4 %}
+                <div class="progress-bar orange" style="width:80%;"></div>
+
+                {% elif score==5 %}
+                <div class="progress-bar green" style="width:100%;"></div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- Strength -->
+
+        <div class="card">
+
+            <h3>Password Strength</h3>
+
+            <h2 class="{{ color }}">
+                {{ strength }}
+            </h2>
+
+        </div>
+
+
+        <!-- Crack Time -->
+
+        <div class="card">
+
+            <h3>Estimated Crack Time</h3>
+
+            <h2>{{ crack_time }}</h2>
+
+        </div>
+
+
+        <!-- Risk -->
+
+        <div class="card">
+
+            <h3>Risk Level</h3>
+
+            <h2>{{ risk }}</h2>
+
+        </div>
+
+
+        <!-- Characteristics -->
+
+        <div class="card full">
+
+            <h3>Password Characteristics</h3>
+
+            <ul class="checks">
+
+                <li>
+                    {% if checks.length %}
+                    ✅ Length ≥ 8
+                    {% else %}
+                    ❌ Length ≥ 8
+                    {% endif %}
+                </li>
+
+                <li>
+                    {% if checks.uppercase %}
+                    ✅ Uppercase Letter
+                    {% else %}
+                    ❌ Uppercase Letter
+                    {% endif %}
+                </li>
+
+                <li>
+                    {% if checks.lowercase %}
+                    ✅ Lowercase Letter
+                    {% else %}
+                    ❌ Lowercase Letter
+                    {% endif %}
+                </li>
+
+                <li>
+                    {% if checks.number %}
+                    ✅ Number
+                    {% else %}
+                    ❌ Number
+                    {% endif %}
+                </li>
+
+                <li>
+                    {% if checks.special %}
+                    ✅ Special Character
+                    {% else %}
+                    ❌ Special Character
+                    {% endif %}
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- Password Roast -->
+
+        <div class="card full roast">
+
+            <h3>😂 Password Roast</h3>
+
+            <p>{{ roast }}</p>
+
+        </div>
+
+
+        <!-- Suggestions -->
+
+        <div class="card full">
+
+            <h3>Security Suggestions</h3>
+
+            {% if suggestions %}
+
+            <ul>
+
+                {% for suggestion in suggestions %}
+
+                <li>{{ suggestion }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p>
+                🎉 Excellent! No improvements needed.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Cyber Fact -->
+
+        <div class="card full fact">
+
+            <h3>💡 Did You Know?</h3>
+
+            <p>{{ fact }}</p>
+
+        </div>
+
+
+        <!-- Game -->
+
+        <div class="card full center">
+
+            <h3>Ready for a Challenge?</h3>
+
+            <p>
+                Test your cybersecurity skills by solving password puzzles.
+            </p>
+
+            <a href="/game" class="game-btn">
+                🎮 Play Password Detective
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
